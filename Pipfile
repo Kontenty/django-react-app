@@ -10,7 +10,6 @@ pylint = "*"
 django = "*"
 djangorestframework = "*"
 django-rest-knox = "*"
-pylint = "*"
 autopep8 = "*"
 pep8 = "*"
 
