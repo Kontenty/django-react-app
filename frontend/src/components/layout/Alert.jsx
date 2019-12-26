@@ -8,35 +8,30 @@ const mapStateToProps = state => ({
   message: state.messages
 });
 
-function alertReducer(state, action) {
-  switch (action.type) {
-    case value:
-      break;
-
-    default:
-      return state;
-  }
-}
-
 const Alert = props => {
   const alert = useAlert();
 
   useEffect(() => {
     const { status, msg } = props.error;
-    const { message } = props;
     if (status) {
       Object.keys(msg).map(key => {
-        alert.error(`${key}: ${msg[key].join()}`);
+        alert.error(
+          `${key}: ${Array.isArray(msg[key]) ? msg[key].join() : msg[key]}`
+        );
       });
     }
-    if (message && message.length() > 0) alert.success(message);
   }, [props.error]);
+
+  useEffect(() => {
+    if (message && message.length() > 0) alert.success(message);
+  }, [props.message]);
 
   return <></>;
 };
 
 Alert.propTypes = {
   error: PropTypes.object.isRequired,
-  message: PropTypes.object.isRequired
+  message: PropTypes.string.isRequired
 };
+
 export default connect(mapStateToProps)(Alert);

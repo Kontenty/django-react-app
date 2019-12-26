@@ -10,7 +10,9 @@ export const getLeads = () => dispatch => {
         payload: res.data
       });
     })
-    .catch(err => console.log(err));
+    .catch(err =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
 };
 // ADD LEAD
 export const addLead = lead => dispatch => {
