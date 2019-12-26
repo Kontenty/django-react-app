@@ -23,7 +23,8 @@ const Alert = props => {
   }, [props.error]);
 
   useEffect(() => {
-    if (message && message.length() > 0) alert.success(message);
+    if (props.message && props.message.length() > 0)
+      alert.success(props.message);
   }, [props.message]);
 
   return <></>;
